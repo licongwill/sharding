@@ -14,6 +14,7 @@ public class ShardingApplication {
 		ConfigurableApplicationContext run = SpringApplication.run(ShardingApplication.class, args);
 		UserDao userDao = (UserDao) run.getBean("userDao");
 		User byId = userDao.findById(1L);
+		System.out.println(byId.toString());
 	}
 
 }

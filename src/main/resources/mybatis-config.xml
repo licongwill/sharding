@@ -24,6 +24,6 @@
         <package name="com.lic.sharding.domain"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
     </mappers>
 </configuration>

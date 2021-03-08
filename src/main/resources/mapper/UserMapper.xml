@@ -20,10 +20,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lic.sharding.dao.UserDao">
+
     <resultMap id="BaseResultMap" type="User">
         <result column="id" property="id"/>
-        <result column="purchaser_id" property="purchaserId"/>
+        <result column="user_name" property="userName"/>
+        <result column="real_name" property="realName"/>
+        <result column="password" property="password"/>
     </resultMap>
+
     <select id="findById" resultMap="BaseResultMap">
         select id, user_name, real_name, password from user where id = #{id}
     </select>
