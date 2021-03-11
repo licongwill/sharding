@@ -1,6 +1,7 @@
 package com.lic.sharding;
 
 import com.lic.sharding.dao.UserMapper;
+import com.lic.sharding.domain.User;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class ShardingApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(ShardingApplication.class, args);
-		UserMapper userMapper = context.getBean("userMapper",UserMapper.class);
-		userMapper.findById(1L);
+		SpringApplication.run(ShardingApplication.class, args);
 	}
 
 }
