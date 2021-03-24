@@ -1,0 +1,55 @@
+<configuration debug="true">
+
+    <property name="LOG_DIR" value="/appLog/sharding" />
+
+    <property name="FILE_NAME" value="sharding" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="server_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>${LOG_DIR}/${FILE_NAME}_info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMM,aux}/sharding-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>8G</maxFileSize>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{10} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="service_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <file>${LOG_DIR}/${FILE_NAME}_error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMM,aux}/sharding-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>8G</maxFileSize>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{10} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.lic.sharding.ShardingApplication" level="info" additivity="false">
+        <appender-ref  ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.lic.sharding" additivity="false">
+        <appender-ref ref="service_info"/>
+        <appender-ref ref="service_error"/>
+    </logger>
+
+    <root level="info"></root>
+</configuration>
