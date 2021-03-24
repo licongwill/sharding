@@ -51,5 +51,8 @@
         <appender-ref ref="service_error"/>
     </logger>
 
-    <root level="info"></root>
+    <root level="info">
+        <appender-ref ref="service_info"/>
+        <appender-ref ref="service_error"/>
+    </root>
 </configuration>
