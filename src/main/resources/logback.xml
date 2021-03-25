@@ -18,8 +18,8 @@
         </filter>
         <file>${LOG_DIR}/${FILE_NAME}_info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/%d{yyyyMM,aux}/sharding-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <maxFileSize>8G</maxFileSize>
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMM,aux}/%d{yyyy-MM-dd}.%i.info.log</fileNamePattern>
+            <maxFileSize>2gb</maxFileSize>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -27,14 +27,14 @@
         </encoder>
     </appender>
 
-    <appender name="service_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="server_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
         <file>${LOG_DIR}/${FILE_NAME}_error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/%d{yyyyMM,aux}/sharding-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <maxFileSize>8G</maxFileSize>
+            <fileNamePattern>${LOG_DIR}/%d{yyyyMM,aux}/%d{yyyy-MM-dd}.%i.error.log</fileNamePattern>
+            <maxFileSize>8gb</maxFileSize>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -47,12 +47,12 @@
     </logger>
 
     <logger name="com.lic.sharding" additivity="false">
-        <appender-ref ref="service_info"/>
-        <appender-ref ref="service_error"/>
+        <appender-ref ref="server_info"/>
+        <appender-ref ref="server_error"/>
     </logger>
 
     <root level="info">
-        <appender-ref ref="service_info"/>
-        <appender-ref ref="service_error"/>
+        <appender-ref ref="server_info"/>
+        <appender-ref ref="server_error"/>
     </root>
 </configuration>
